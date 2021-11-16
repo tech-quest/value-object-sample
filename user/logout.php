@@ -6,4 +6,4 @@ session_start();
 $_SESSION = [];
 if (isset($_COOKIE[session_name()])) setcookie(session_name(), '', time() - 4200, '/');
 session_destroy();
-redirect('/blog/user/signin.php');
+redirect('/dao-sample/user/signin.php');
