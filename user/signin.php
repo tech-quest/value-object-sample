@@ -1,9 +1,10 @@
 <?php
-require_once(__DIR__ . '/../utils/Session.php');
+session_start();
+$errors = $_SESSION['errors'] ?? [];
+unset($_SESSION['errors']);
 
-$session = Session::getInstance();
-$errors = $session->popAllErrors();
-$successRegistedMessage = $session->getMessage();
+$successRegistedMessage = $_SESSION['message'] ?? "";
+unset($_SESSION['message']);
 ?>
 
 <!DOCTYPE html>

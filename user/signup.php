@@ -1,15 +1,18 @@
 <?php
-require_once(__DIR__ . '/../utils/session.php');
-
+// require_once(__DIR__ . '/../utils/session.php');
 session_start();
+// $session = Session::getInstance();
+// $errors = $session->popAllErrors();
+$errors = $_SESSION['errors'] ?? [];
+unset($_SESSION['errors']);
 
-$session = Session::getInstance();
-$errors = $session->popAllErrors();
-$formInputs = $session->getFormInputs();
-
-$userName = $formInputs['userName'] ?? '';
-$mail = $formInputs['mail'] ?? '';
+// $formInputs = $session->getFormInputs();
+// $userName = $formInputs['userName'] ?? '';
+// $mail = $formInputs['mail'] ?? '';
+$userName = $_SESSION['formInputs']['userName'] ?? '';
+$mail = $_SESSION['formInputs']['mail'] ?? '';
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
