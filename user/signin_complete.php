@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__ . '/../dao/UserDao.php');
-require_once(__DIR__ . '../UseCase/UseCaseInput/SignInUseCaseInput.php');
+require_once(__DIR__ . '../UseCase/UseCaseInput/SignInInput.php');
 require_once(__DIR__ . '../UseCase/UseCaseInteractor/SignInInteractor.php');
 require_once(__DIR__ . '/../utils/redirect.php');
 
@@ -13,7 +13,7 @@ if (empty($mail) || empty($password)) {
     redirect("./user/signin.php");
 }
 
-$useCaseInput = new SignInUseCaseInput($mail, $password);
+$useCaseInput = new SignInInput($mail, $password);
 $useCase = new SignInInteractor($useCaseInput);
 $useCaseOutput = $useCase->handler();
 redirect($useCaseOutput->redirectUrl());

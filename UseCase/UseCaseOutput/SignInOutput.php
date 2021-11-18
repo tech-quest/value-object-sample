@@ -1,6 +1,6 @@
 <?php
 
-final class SignInUseCaseOutput
+final class SignInOutput
 {
     private $isSuccess;
 

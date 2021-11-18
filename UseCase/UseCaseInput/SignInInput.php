@@ -1,6 +1,6 @@
 <?php
 
-final class SignInUseCaseInput
+final class SignInInput
 {
     private $email;
     private $password;
