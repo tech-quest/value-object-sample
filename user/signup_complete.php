@@ -17,15 +17,8 @@ if (!empty($_SESSION['errors'])) {
   redirect('/dao-sample/user/signup.php');
 }
 
-$userDao = new UserDao();
-// メールアドレスに一致するユーザーの取得
-$user = $userDao->findByMail($mail);
 
-if (!is_null($user)) $_SESSION['errors'][] = "すでに登録済みのメールアドレスです";
-if (!empty($_SESSION['errors'])) redirect('/dao-sample/user/signup.php');
-
-// ユーザーの保存
-$userDao->create($userName, $mail, $password);
-
-$_SESSION['message'] = "登録できました。";
-redirect('/dao-sample/user/signin.php');
+$useCaseInput = new SignUpInput($userName, $mail, $password);
+$useCase = new SignUpInteractor($useCaseInput);
+$useCaseOutput = $useCase->handler();
+redirect($useCaseOutput->redirectUrl());
