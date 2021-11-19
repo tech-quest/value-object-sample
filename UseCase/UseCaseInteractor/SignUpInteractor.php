@@ -20,7 +20,6 @@ final class SignUpInteractor
     }
 
     $userDao->create($this->useCaseInput->name(), $this->useCaseInput->email(), $this->useCaseInput->password());
-    $_SESSION['message'] = "登録できました。";
     return new SignUpOutput(true);
   }
 }

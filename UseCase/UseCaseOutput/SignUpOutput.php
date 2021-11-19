@@ -7,15 +7,15 @@ final class SignUpOutput
     public function __construct(bool $isSuccess)
     {
       $this->isSuccess = $isSuccess;
-      if (!$isSuccess) {
-        $_SESSION['errors'][] = "すでに登録済みのメールアドレスです";
-      }
     }
 
-    public function redirectUrl(): string
+    public function isSuccess(): bool
     {
-      if ($this->isSuccess) return './signin.php';
+      return $this->isSuccess;
+    }
 
-      return './signup.php';      
+    public function message(): string
+    {
+      return $this->isSuccess ? "登録が完了しました" : "すでに登録済みのメールアドレスです";
     }
 }

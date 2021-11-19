@@ -17,8 +17,14 @@ if (!empty($_SESSION['errors'])) {
   redirect('/dao-sample/user/signup.php');
 }
 
-
 $useCaseInput = new SignUpInput($userName, $mail, $password);
 $useCase = new SignUpInteractor($useCaseInput);
 $useCaseOutput = $useCase->handler();
-redirect($useCaseOutput->redirectUrl());
+
+if ($useCaseOutput->isSuccess()) {
+  $_SESSION['message'] = $useCaseOutput->message();
+  redirect('/dao-sample/user/signin.php');
+}  else {
+  $_SESSION['errors'][] = $useCaseOutput->message();
+  redirect('/dao-sample/user/signup.php');
+}
