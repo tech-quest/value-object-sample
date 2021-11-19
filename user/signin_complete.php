@@ -16,4 +16,12 @@ if (empty($mail) || empty($password)) {
 $useCaseInput = new SignInInput($mail, $password);
 $useCase = new SignInInteractor($useCaseInput);
 $useCaseOutput = $useCase->handler();
-redirect($useCaseOutput->redirectUrl());
+
+if ($useCaseOutput->isSuccess()) {
+    $_SESSION['formInputs']['userId'] = $useCaseOutput->signInResult()['id'];
+    $_SESSION['formInputs']['userName'] = $useCaseOutput->signInResult()['user_name'];;
+    redirect("../index.php");
+} else {
+    $_SESSION['errors'][] = $useCaseOutput->signInResult();
+    redirect("./user/signin.php");
+}

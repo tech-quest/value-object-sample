@@ -2,6 +2,7 @@
 
 final class SignInInteractor
 {
+    const FAILED_MESSAGE = "メールアドレスまたは<br />パスワードが間違っています";
 
     private $useCaseInput;
 
@@ -16,15 +17,13 @@ final class SignInInteractor
         $user = $userDao->findByMail($this->useCaseInput->email());
 
         if (is_null($user)) {
-            return new SignInOutput(false);
+            return new SignInOutput(false, self::FAILED_MESSAGE);
         }
 
         if (!password_verify($this->useCaseInput->password(), $user["password"])) {
-            return new SignInOutput(false);
+            return new SignInOutput(false, self::FAILED_MESSAGE);
         }
 
-        $_SESSION['formInputs']['userId'] = $user['id'];
-        $_SESSION['formInputs']['userName'] = $user['user_name'];
-        return new SignInOutput(true);
+        return new SignInOutput(true, $user);
     }
 }

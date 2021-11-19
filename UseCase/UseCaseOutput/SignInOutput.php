@@ -3,19 +3,20 @@
 final class SignInOutput
 {
     private $isSuccess;
-
-    public function __construct(bool $isSuccess)
+    
+    public function __construct(bool $isSuccess, string | array $signInResult)
     {
-      $this->isSuccess = $isSuccess;
-      if (!$isSuccess) {
-        $_SESSION['errors'][] = "メールアドレスまたは<br />パスワードが違います";
-      }
+        $this->isSuccess = $isSuccess;
+        $this->signInResult = $signInResult;
+    }
+    
+    public function isSuccess(): bool
+    {
+      return $this->isSuccess;
     }
 
-    public function redirectUrl(): string
+    public function signInResult(): string | array
     {
-      if ($this->isSuccess) return "../index.php";
-      
-      return "./signin.php";
+      return $this->signInResult;
     }
 }
