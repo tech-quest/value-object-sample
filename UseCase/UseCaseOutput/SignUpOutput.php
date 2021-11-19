@@ -3,11 +3,18 @@
 final class SignUpOutput
 {
     private $isSuccess;
+    private $message;
 
-    public function __construct(bool $isSuccess)
+    public function __construct(bool $isSuccess, string $message)
     {
-      $this->isSuccess = $isSuccess;
+        $this->isSuccess = $isSuccess;
+        $this->message = $message;
+
+        if (!$isSuccess) {
+            $_SESSION['errors'][] = $message;
+        }
     }
+
 
     public function isSuccess(): bool
     {
@@ -16,6 +23,6 @@ final class SignUpOutput
 
     public function message(): string
     {
-      return $this->isSuccess ? "登録が完了しました" : "すでに登録済みのメールアドレスです";
+      return $this->message;
     }
 }
