@@ -35,7 +35,7 @@ final class UserDao
 			self::TABLE_NAME
 		);
 		$statement = $this->pdo->prepare($sql);
-		$statement->bindValue(':mail', $mail, PDO::PARAM_STR);
+		$statement->bindValue(':mail', $mail->value(), PDO::PARAM_STR);
 		$statement->execute();
 		$user = $statement->fetch(PDO::FETCH_ASSOC);
 
