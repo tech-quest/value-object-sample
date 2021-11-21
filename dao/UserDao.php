@@ -13,7 +13,7 @@ final class UserDao
 		}
 	}
 
-	public function create(string $userName, string $mail, string $password): void
+	public function create(string $userName, UserEmail $mail, string $password): void
 	{
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 

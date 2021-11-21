@@ -6,7 +6,7 @@ final class SignUpInput
   private $email;
   private $password;
 
-  public function __construct(string $name, string $email, string $password)
+  public function __construct(string $name, UserEmail $email, string $password)
   {
     $this->name = $name;
     $this->email = $email;
@@ -18,7 +18,7 @@ final class SignUpInput
     return $this->name;
   }
 
-  public function email(): string
+  public function email(): UserEmail
   {
     return $this->email;
   }
