@@ -20,7 +20,7 @@ final class SignInInteractor
             return new SignInOutput(false, self::FAILED_MESSAGE);
         }
 
-        if (!password_verify($this->useCaseInput->password(), $user["password"])) {
+        if (!password_verify($this->useCaseInput->password()->value(), $user["password"])) {
             return new SignInOutput(false, self::FAILED_MESSAGE);
         }
 

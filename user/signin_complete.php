@@ -14,7 +14,8 @@ if (empty($mail) || empty($password)) {
 }
 
 $userEmail = new UserEmail($mail);
-$useCaseInput = new SignInInput($userEmail, $password);
+$userPassword = new UserPassword($password);
+$useCaseInput = new SignInInput($userEmail, $userPassword);
 $useCase = new SignInInteractor($useCaseInput);
 $useCaseOutput = $useCase->handler();
 
