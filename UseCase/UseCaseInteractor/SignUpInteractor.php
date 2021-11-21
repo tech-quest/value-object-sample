@@ -21,7 +21,7 @@ final class SignUpInteractor
       return new SignUpOutput(false, self::ALLREADY_EXISTS_MESSAGE);
     }
 
-    $userDao->create($this->useCaseInput->name(), $this->useCaseInput->email(), $this->useCaseInput->password()->value());
+    $userDao->create($this->useCaseInput->name(), $this->useCaseInput->email(), $this->useCaseInput->password());
     return new SignUpOutput(true, self::COMPLETED_MESSAGE);
   }
 }
