@@ -13,6 +13,7 @@ if (empty($mail) || empty($password)) {
     redirect("./user/signin.php");
 }
 
+$useEmail = new UserEmail($mail);
 $useCaseInput = new SignInInput($mail, $password);
 $useCase = new SignInInteractor($useCaseInput);
 $useCaseOutput = $useCase->handler();

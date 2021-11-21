@@ -5,13 +5,13 @@ final class SignInInput
     private $email;
     private $password;
 
-    public function __construct(string $email, string $password)
+    public function __construct(UserEmail $email, string $password)
     {
         $this->email = $email;
         $this->password = $password;
     }
 
-    public function email(): string
+    public function email(): UserEmail
     {
         return $this->email;
     }
