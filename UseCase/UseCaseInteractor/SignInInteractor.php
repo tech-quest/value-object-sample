@@ -48,7 +48,7 @@ final class SignInInteractor
 
     private function saveSession(array $user): void
     {
-        $_SESSION['formInputs']['userId'] = $user['id'];
-        $_SESSION['formInputs']['userName'] = $user['user_name'];
+        $_SESSION['user']['id'] = $user['id'];
+        $_SESSION['user']['name'] = $user['name'];
     }
 }
