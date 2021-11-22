@@ -3,14 +3,15 @@
 final class SignInInteractor
 {
     const FAILED_MESSAGE = "メールアドレスまたは<br />パスワードが間違っています";
+    const SUCCESS_MESSAGE = "ログインしました";
 
     private $userDao;
-    private $useCaseInput;
+    private $input;
 
-    public function __construct(SignInInput $useCaseInput)
+    public function __construct(SignInInput $input)
     {
         $this->userDao = new UserDao();
-        $this->useCaseInput = $useCaseInput;
+        $this->input = $input;
     }
 
     public function handler(): SignInOutput
@@ -27,12 +28,12 @@ final class SignInInteractor
 
         $this->saveSession($user);
 
-        return new SignInOutput(true, $user);
+        return new SignInOutput(true, self::SUCCESS_MESSAGE);
     }
 
     private function findUser(): array
     {
-        return $userDao->findByMail($this->useCaseInput->email());
+        return $this->userDao->findByMail($this->input->email());
     }
 
     private function notExistsUser(?array $user): bool
@@ -42,6 +43,12 @@ final class SignInInteractor
 
     private function isInvalidPassword(string $password): bool
     {
-        return !password_verify($this->useCaseInput->password(), $password);
+        return !password_verify($this->input->password(), $password);
+    }
+
+    private function saveSession(array $user): void
+    {
+        $_SESSION['formInputs']['userId'] = $user['id'];
+        $_SESSION['formInputs']['userName'] = $user['user_name'];
     }
 }
