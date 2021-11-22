@@ -13,16 +13,16 @@ final class UserDao
 		}
 	}
 
-	public function create(string $userName, string $mail, string $password): void
+	public function create(string $name, string $mail, string $password): void
 	{
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 		$sql = sprintf(
-			"INSERT INTO %s (user_name, mail, password) VALUES (:userName, :mail, :password)",
+			"INSERT INTO %s (name, mail, password) VALUES (:name, :mail, :password)",
 			self::TABLE_NAME
 		);
 		$statement = $this->pdo->prepare($sql);
-		$statement->bindValue(':userName', $userName, PDO::PARAM_STR);
+		$statement->bindValue(':name', $name, PDO::PARAM_STR);
 		$statement->bindValue(':mail', $mail, PDO::PARAM_STR);
 		$statement->bindValue(':password', $hashedPassword, PDO::PARAM_STR);
 		$statement->execute();
