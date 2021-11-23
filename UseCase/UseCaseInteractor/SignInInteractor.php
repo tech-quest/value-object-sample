@@ -22,7 +22,9 @@ final class SignInInteractor
             return new SignInOutput(false, self::FAILED_MESSAGE);
         }
 
-        if ($this->isInvalidPassword($user['password'])) {
+        $hashedPassword = new HashedPassword($user['password']);
+
+        if ($this->isInvalidPassword($hashedPassword)) {
             return new SignInOutput(false, self::FAILED_MESSAGE);
         }
 
@@ -41,9 +43,9 @@ final class SignInInteractor
         return is_null($user);
     }
 
-    private function isInvalidPassword(string $password): bool
+    private function isInvalidPassword(HashedPassword $hashedPassword): bool
     {
-        return !password_verify($this->input->password()->value(), $password);
+        return !$hashedPassword->verify($this->input->password());
     }
 
     private function saveSession(array $user): void

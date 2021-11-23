@@ -13,4 +13,9 @@ final class HashedPassword
     {
         return $this->value;
     }
+
+    public function verify(InputPassword $inputPassword): bool
+    {
+        return password_verify($inputPassword->value(), $this->value);
+    }
 }
