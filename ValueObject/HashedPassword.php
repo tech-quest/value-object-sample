@@ -2,10 +2,16 @@
 
 final class HashedPassword
 {
+    const INVALID_MESSAGE = 'パスワードの形式が正しくありません';
+    
     private $value;
 
     public function __construct(string $value)
     {
+        if ($value === false) {
+            throw new Exception(self::INVALID_MESSAGE);
+        }
+
         $this->value = $value;
     }
 
