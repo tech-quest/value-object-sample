@@ -14,8 +14,8 @@ final class InputPassword
     return $this->value;
   }
 
-  public function hash(): string
+  public function hash(): HashedPassword
   {
-    return password_hash($this->value, PASSWORD_DEFAULT);
+    return new HashedPassword(password_hash($this->value, PASSWORD_DEFAULT));
   }
 }
