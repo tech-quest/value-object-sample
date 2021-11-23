@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * ユーザーが入力したパスワード用のValueObject
+ */
 final class InputPassword
 {
   
@@ -22,6 +25,11 @@ final class InputPassword
     return $this->value;
   }
 
+  /**
+   * ユーザーが入力したパスワードをハッシュ化したパスワードに変換する
+   * 
+   * @return HashedPassword
+   */
   public function hash(): HashedPassword
   {
     return new HashedPassword(password_hash($this->value, PASSWORD_DEFAULT));
