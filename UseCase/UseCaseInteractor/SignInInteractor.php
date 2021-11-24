@@ -1,5 +1,8 @@
 <?php 
 
+require_once(__DIR__ . '/../../ValueObject/HashedPassword.php');
+require_once(__DIR__ . '/../UseCaseOutput/SignInOutput.php');
+
 /**
  * ログインユースケース
  */
@@ -68,7 +71,7 @@ final class SignInInteractor
      */
     private function findUser(): array
     {
-        return $this->userDao->findByMail($this->input->email());
+        return $this->userDao->findByEmail($this->input->email());
     }
 
     /**
