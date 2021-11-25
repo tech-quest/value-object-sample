@@ -1,5 +1,8 @@
 # blog
 
+## ValueObjectとは？
+- 値の範囲を制限してプログラムをわかりやすく安全にするためのオブジェクト
+- こちらの[リンク](https://www.slideshare.net/masuda220/java-objectoriented-programming-primer)のスライドショーが参考になるかもです
 ## SQL文
 
 CREATE DATABASE blog;
