@@ -1,5 +1,5 @@
 <?php
-
+require_once(__DIR__ . '/../UseCaseOutput/SignUpOutput.php');
 /**
  * ユーザー登録ユースケース
  */
@@ -54,9 +54,9 @@ final class SignUpInteractor
    *
    * @return array
    */
-  private function findUser(): array
+  private function findUser(): ?array
   {
-    return $this->userDao->findByMail($this->input->email());
+    return $this->userDao->findByEmail($this->input->email());
   }
 
   /**
